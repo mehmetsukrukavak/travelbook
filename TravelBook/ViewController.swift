@@ -116,6 +116,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             saveButton.isHidden = false
             nameText.isEnabled = true
             commentText.isEnabled = true
+            
+            let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+                       
+                       view.addGestureRecognizer(gestureRecognizer)
         }
         
         
@@ -182,6 +186,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return pinView
     }
     
+    @objc func hideKeyboard(){
+            view.endEditing(true)
+        }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if chosenPlaceTitle != "" {
             let requestLocation = CLLocation(latitude: annotationLatitude, longitude: annotationLongitude)
